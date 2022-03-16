@@ -1,0 +1,105 @@
+Chef is working on his swap-based sorting algorithm for strings.
+
+Given a string S of length N, he wants to know whether he can sort the string using his algorithm.
+
+According to the algorithm, one can perform the following operation on string S any number of times:
+
+Choose some index i (1≤i≤N) and swap the ith character from the front and the ith character from the back.
+More formally, choose an index i and swap Si and S(N+1−i).
+For example, d––cba–– can be converted to a––cbd–– using one operation where i=1.
+
+Help Chef find if it is possible to sort the string using any (possibly zero) number of operations.
+
+Input Format
+The first line of the input contains a single integer T, denoting the number of test cases. The description of T test cases follows.
+The first line of each test case contains N, the length of the string.
+The second line contains a string S of length N consisting of lowercase letters of the Latin alphabet.
+Output Format
+For each test case, print YES if it is possible to sort the string by performing any number of operations. Otherwise, print NO.
+
+You may print each character of the string in uppercase or lowercase (for example, the strings YeS, yEs, yes and YES will all be treated as identical).
+
+Constraints
+1≤T≤100
+1≤N≤103
+Sum of N over all test cases does not exceed 2⋅103.
+S consists of lowercase Latin alphabets only.
+Sample Input 1 
+3
+4
+dbca
+3
+ccc
+3
+bza
+Sample Output 1 
+YES
+YES
+NO
+Explanation
+Test case 1: Chef can sort the string using 1 operation.
+
+Choose i=1 and swap S1=d and S4=a. This way, the string becomes abcd.
+Hence, the string is sorted.
+
+Test case 2: Chef needs 0 operations to sort this string as it is already sorted.
+
+Test case 3: It can be proven that the given string cannot be sorted using any number of operations.
+
+
+
+
+/* Name of the class has to be "Main" only if the class is public. */
+class Codechef
+{
+    	public static String sortString(String in)
+    {
+        
+        char tempArray[] = in.toCharArray();
+
+        Arrays.sort(tempArray);
+ 
+        return new String(tempArray);
+    }
+    
+    
+	public static void main (String[] args) throws java.lang.Exception
+	{
+	    Scanner sc = new Scanner(System.in);
+	    int a = sc.nextInt();
+	    for(int k=0;k<a;k++)
+	    {
+	        int n = sc.nextInt();
+	 
+            String in = sc.next();
+            String outputString = sortString(in);
+            char arr[] = in.toCharArray();
+            
+            char temp = '0';
+            int p = arr.length;
+            int r=0;
+            
+            for(int j=0;j<p/2+1;j++)
+            {
+                if(arr[j]>arr[p-1-j])
+                {
+                    temp=arr[j];
+                    arr[j]=arr[p-1-j];
+                    arr[p-1-j]=temp;
+                }
+                if(outputString.equals(String.valueOf(arr)))
+                {
+                    System.out.println("YES");
+                    r++;
+                    break;
+                    
+                }
+                
+                
+            }
+            if(r==0)
+            System.out.println("NO");
+    
+	    }
+	}
+}
